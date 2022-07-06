@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <!-- 디렉티브
+	    v-if : 뷰데이터 값의 참, 거짓을 판단하고 HTML태그를 화면에 
+               표시하거나 표시하지 않거나 한다.
+	    v-for : 뷰데이터의 갯수만큼 HTML태그를 반복 출력한다.
+	    v-show : v-if와 유사, 화면 표시는 같으나 차이점은 영역은 남겨둔다.
+	    v-bind : HTML태그 속성과 뷰 데이터 속성을 연결한다.
+	    v-on : 이벤트를 설정하고 핸들러 메소드를 실행한다.
+	    v-model : 폼 태그에서 사용. 입력데이터를 뷰데이터와 즉시 동기화한다. 
+		          (watch속성과 연결해서 사용)
+		          <input>,<select>,<textarea>태그에만 사용 가능 -->
+
+  <body>
+    <div id="app">
+      <a v-if="flag">Vue.js</a>
+      <ul>
+        <li v-for="system in systems">{{system}}</li>
+      </ul>
+      <p v-show="flag">Vue.js</p>
+      <h5 v-bind:id="uid">뷰</h5>
+      <button v-on:click="popupAlert">경고 창 버튼</button>
+      <button v-on:click="clickBtn(10)">경고 창 버튼</button>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          flag: true,
+          systems: ["android", "ios", "window"],
+          uid: 10,
+        },
+        methods: {
+          popupAlert: function () {
+            return alert("경고 창 표시");
+          },
+          clickBtn: function (num) {
+            alert("click: " + num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

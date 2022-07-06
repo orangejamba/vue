@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      div {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>첫번째 인스턴스 영역</h1>
+      <button>전역 컴퍼넌트 등록</button>
+      <my-component></my-component>
+      <button>지역컴퍼넌트 등록</button>
+      <my-local-component></my-local-component>
+      <br />
+    </div>
+    <hr />
+    <div id="app2">
+      <h1>두번째 인스턴스 영역</h1>
+      <my-component></my-component>
+      <my-local-component></my-local-component>
+    </div>
+    <script>
+      //지역 컴퍼넌트 , 전연 컴퍼넌트
+
+      //전역 컴퍼넌트
+      Vue.component("my-component" /*컴퍼넌트의 이름("my-component")*/, {
+        template:
+          "<div>전역컴퍼넌트 등록</div>" /*html문서에 표시할 요소, CSS속성 정의*/,
+      });
+
+      let cmp = {
+        template: "<div>지역컴퍼넌트 등록</div>",
+      };
+
+      new Vue({
+        el: "#app",
+        components: /* 지역컴퍼넌트 */ {
+          "my-local-component": cmp,
+        },
+      });
+
+      new Vue({
+        el: "#app2",
+      });
+    </script>
+  </body>
+</html>
